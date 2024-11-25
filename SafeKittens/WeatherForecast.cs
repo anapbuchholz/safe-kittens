@@ -1,6 +1,6 @@
 namespace SafeKittens
 {
-    public class WeatherForecast
+    public class Kitten
     {
         public DateOnly Date { get; set; }
 
