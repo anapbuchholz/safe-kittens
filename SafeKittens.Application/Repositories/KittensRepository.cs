@@ -4,18 +4,27 @@ namespace SafeKittens.Application.Repositories
 {
     public class KittensRepository : IKittensRepository
     {
-        public Kitten GetKitten()
-        {
-            var kitten = new Kitten()
-            {
-                Age = "2",
-                Description = "purrfect",
-                Gender = Gender.Male,
-                Name = "Theo",
-                Id = Guid.NewGuid()
-            };
+        private readonly Dictionary<Guid, Kitten> _database;
 
-            return kitten;
+        public KittensRepository()
+        {
+            _database = new Dictionary<Guid, Kitten>();
+        }
+
+        public async Task<List<Kitten>> GetKittens()
+        {
+            return [.. _database.Values];
+        }
+
+        public async Task<Kitten?> GetKitten(Guid kittenId)
+        {
+            return _database.TryGetValue(kittenId, out var kitten) ? kitten : null;
+        }
+
+        public async Task RegisterKitten(Kitten kitten)
+        {
+            _database.Add(kitten.Id, kitten);
+            await Task.CompletedTask;
         }
     }
 }

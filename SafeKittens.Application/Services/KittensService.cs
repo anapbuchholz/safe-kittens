@@ -12,9 +12,19 @@ namespace SafeKittens.Application.Services
             _kittensRepository = kittensRepository;
         }
 
-        public Kitten GetKitten()
+        public async Task<List<Kitten>> GetKittens()
         {
-            return _kittensRepository.GetKitten();
+            return await _kittensRepository.GetKittens();
+        }
+
+        public async Task<Kitten?> GetKitten(Guid kittenId)
+        {
+            return await _kittensRepository.GetKitten(kittenId);
+        }
+
+        public async Task RegisterKitten(Kitten kitten)
+        {
+            await _kittensRepository.RegisterKitten(kitten);
         }
     }
 }

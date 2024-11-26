@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using SafeKittens.Application.Services;
+using SafeKittens.Domain;
 using System.Net;
 
 namespace SafeKittens.Controllers
@@ -8,12 +9,10 @@ namespace SafeKittens.Controllers
     [Route("[controller]")]
     public class KittensController : ControllerBase
     {
-        private readonly ILogger<Kitten> _logger;
         private readonly IKittensService _kittensService;
 
-        public KittensController(ILogger<Kitten> logger, IKittensService kittensService)
+        public KittensController(IKittensService kittensService)
         {
-            _logger = logger;
             _kittensService = kittensService;
         }
 
@@ -23,21 +22,35 @@ namespace SafeKittens.Controllers
         [ProducesResponseType((int)HttpStatusCode.Conflict)]
         [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
-        public async Task<IActionResult> RegisterKitten([FromBody] Kitten request)
+        public async Task<IActionResult> Post([FromBody] Kitten request)
         {
-            _kittensService.GetKitten();
+            await _kittensService.RegisterKitten(request);
 
-            return Ok();
+            return Created();
         }
 
-        //[HttpGet()]
-        //[ProducesResponseType((int)HttpStatusCode.OK)]
-        //[ProducesResponseType((int)HttpStatusCode.Unauthorized)]
-        //[ProducesResponseType((int)HttpStatusCode.Forbidden)]
-        //[ProducesResponseType((int)HttpStatusCode.InternalServerError)]
-        //public async Task<IActionResult> Get()
-        //{
+        [HttpGet()]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
+        [ProducesResponseType((int)HttpStatusCode.Forbidden)]
+        [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
+        public async Task<IActionResult> GetCollection()
+        {
+            var result = await _kittensService.GetKittens();
 
-        //}
+            return Ok(result);
+        }
+
+        [HttpGet("{kittenId}")]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
+        [ProducesResponseType((int)HttpStatusCode.Forbidden)]
+        [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
+        public async Task<IActionResult> Get([FromRoute] Guid kittenId)
+        {
+            var result = await _kittensService.GetKitten(kittenId);
+
+            return Ok(result);
+        }
     }
 }

@@ -4,6 +4,10 @@ namespace SafeKittens.Application.Services
 {
     public interface IKittensService
     {
-        Kitten GetKitten();
+        Task<List<Kitten>> GetKittens();
+
+        Task<Kitten?> GetKitten(Guid kittenId);
+
+        Task RegisterKitten(Kitten kitten);
     }
 }
