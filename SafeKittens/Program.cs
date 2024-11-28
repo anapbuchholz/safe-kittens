@@ -1,5 +1,5 @@
-using SafeKittens.Application.Repositories;
-using SafeKittens.Application.Services;
+using SafeKittens.Application.Repositories.KittensRepository;
+using SafeKittens.Application.Services.KittensService;
 
 var builder = WebApplication.CreateBuilder(args);
 

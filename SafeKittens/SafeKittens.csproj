@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SafeKittens.Application\SafeKittens.Application.csproj" />
+    <ProjectReference Include="..\SafeKittens.Domain\SafeKittens.Domain.csproj" />
   </ItemGroup>
 
 </Project>

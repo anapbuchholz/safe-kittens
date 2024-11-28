@@ -1,7 +1,7 @@
-﻿using SafeKittens.Application.Repositories;
-using SafeKittens.Domain;
+﻿using SafeKittens.Application.Repositories.KittensRepository;
+using SafeKittens.Domain.Models;
 
-namespace SafeKittens.Application.Services
+namespace SafeKittens.Application.Services.KittensService
 {
     sealed public class KittensService : IKittensService
     {

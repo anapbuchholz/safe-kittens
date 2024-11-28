@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
-using SafeKittens.Application.Services;
-using SafeKittens.Domain;
+using SafeKittens.Application.Services.KittensService;
+using SafeKittens.Domain.Models;
 using System.Net;
 
-namespace SafeKittens.Controllers
+namespace SafeKittens.Controllers.Kittens
 {
     [ApiController]
     [Route("[controller]")]

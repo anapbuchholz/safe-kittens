@@ -1,6 +1,6 @@
-﻿using SafeKittens.Domain;
+﻿using SafeKittens.Domain.Models;
 
-namespace SafeKittens.Application.Services
+namespace SafeKittens.Application.Services.KittensService
 {
     public interface IKittensService
     {

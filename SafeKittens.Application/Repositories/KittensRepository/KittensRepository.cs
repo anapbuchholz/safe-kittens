@@ -1,6 +1,6 @@
-﻿using SafeKittens.Domain;
+﻿using SafeKittens.Domain.Models;
 
-namespace SafeKittens.Application.Repositories
+namespace SafeKittens.Application.Repositories.KittensRepository
 {
     public class KittensRepository : IKittensRepository
     {

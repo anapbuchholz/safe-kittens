@@ -1,4 +1,4 @@
-﻿namespace SafeKittens.Domain
+﻿namespace SafeKittens.Domain.Models
 {
     public enum Gender
     {
